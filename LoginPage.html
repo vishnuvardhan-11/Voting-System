@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeVote - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to SafeVote</h2>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn">Login</button>
+            </div>
+            <p id="login-error-msg" style="color:red;"></p>
+        </form>
+        <!-- Hidden link used for redirection after successful login -->
+        <a href="dashboard.html" id="dashboardLink" style="display:none;">Go to Dashboard</a>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var errorMsg = document.getElementById("login-error-msg");
+            var dashboardLink = document.getElementById("dashboardLink");
+
+            // Clear previous error message
+            errorMsg.textContent = "";
+
+            // Validate username and password fields
+            if (username === "" || password === "") {
+                errorMsg.textContent = "Both fields are required!";
+                return false;
+            }
+            if (password.length < 6) {
+                errorMsg.textContent = "Password must be at least 6 characters!";
+                return false;
+            }
+
+            // Simulate redirection by triggering the hidden <a> tag
+            dashboardLink.click(); 
+            return false;  // Prevent form from submitting
+        }
+    </script>
+</body>
+</html>

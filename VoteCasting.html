@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeVote - Cast Your Vote</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="vote-container">
+        <h2>Cast Your Vote</h2>
+        <form id="voteForm" onsubmit="return submitVote()">
+            <div class="input-group">
+                <label for="candidate">Select Candidate:</label>
+                <select id="candidate" name="candidate">
+                    <option value="Candidate 1">Candidate 1</option>
+                    <option value="Candidate 2">Candidate 2</option>
+                    <option value="Candidate 3">Candidate 3</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn">Submit Vote</button>
+            </div>
+            <p id="vote-error-msg" style="color:red;"></p>
+        </form>
+    </div>
+    <script>function submitVote() {
+        var candidate = document.getElementById("candidate").value;
+        var errorMsg = document.getElementById("vote-error-msg");
+    
+        if (!candidate) {
+            errorMsg.textContent = "Please select a candidate!";
+            return false;
+        }
+        window.location.href = "confirmation.html"; // Redirect to confirmation
+        return true;
+    }
+    </script>
+</body>
+</html>

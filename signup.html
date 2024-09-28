@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeVote - Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function submitSignUp() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var errorMsg = document.getElementById("signup-error-msg");
+            var confirmationLink = document.getElementById("confirmationLink");
+
+            // Clear previous error message
+            errorMsg.textContent = "";
+
+            // Validate fields
+            if (username === "" || password === "" || confirmPassword === "") {
+                errorMsg.textContent = "All fields are required!";
+                return false;
+            }
+            if (password !== confirmPassword) {
+                errorMsg.textContent = "Passwords do not match!";
+                return false;
+            }
+            if (password.length < 6) {
+                errorMsg.textContent = "Password must be at least 6 characters!";
+                return false;
+            }
+
+            // Simulate redirection by triggering the hidden <a> tag
+            confirmationLink.click();
+            return false;  // Prevent form from submitting
+        }
+    </script>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up for SafeVote</h2>
+        <form id="signupForm" onsubmit="return submitSignUp()">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn">Sign Up</button>
+            </div>
+            <p id="signup-error-msg" style="color:red;"></p>
+        </form>
+        <!-- Hidden link for redirection after successful sign up -->
+        <a href="LoginPage.html" id="confirmationLink" style="display:none;">Go to Thank You Page</a>
+    </div>
+</body>
+</html>
